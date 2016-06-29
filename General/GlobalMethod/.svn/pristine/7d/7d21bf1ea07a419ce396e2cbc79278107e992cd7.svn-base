@@ -1,0 +1,67 @@
+//
+//  GlobalRequest.m
+//  米兰港
+//
+//  Created by 隋林栋 on 15/3/5.
+//  Copyright (c) 2015年 Sl. All rights reserved.
+//
+
+#import "GlobalRequest.h"
+
+@implementation GlobalRequest
+
+//#define REQUEST_JSON
+
+//实现单例
+SYNTHESIZE_SINGLETONE_FOR_CLASS(GlobalRequest);
+
+
+
+- (RequestBaseClass *)Request_Unread_Message{
+    if (_Request_Unread_Message == nil) {
+        _Request_Unread_Message = [[RequestBaseClass alloc]init];
+#ifdef REQUEST_JSON
+        _Request_Unread_Message.responseSerializer = [AFHTTPResponseSerializer serializer];
+#endif
+        _Request_Unread_Message.requestSerializer.timeoutInterval = TIME_REQUEST_OUT;
+           }
+    return _Request_Unread_Message;
+}
+
+- (RequestBaseClass *)Request_Login{
+    if (_Request_Login == nil) {
+        _Request_Login = [[RequestBaseClass alloc]init];
+#ifdef REQUEST_JSON
+        _Request_Login.responseSerializer = [AFHTTPResponseSerializer serializer];
+#endif
+        _Request_Login.requestSerializer.timeoutInterval = TIME_REQUEST_OUT;
+    }
+    return _Request_Login;
+}
+
+
+- (RequestBaseClass *)Request_Up_Token{
+    if (_Request_Up_Token == nil) {
+        _Request_Up_Token = [[RequestBaseClass alloc]init];
+#ifdef REQUEST_JSON
+        _Request_Up_Token.responseSerializer = [AFHTTPResponseSerializer serializer];
+#endif
+        _Request_Up_Token.requestSerializer.timeoutInterval = TIME_REQUEST_OUT;
+    }
+    return _Request_Up_Token;
+}
+
+- (RequestBaseClass *)Request_Version{
+    if (_Request_Version == nil) {
+        _Request_Version = [[RequestBaseClass alloc]init];
+#ifdef REQUEST_JSON
+        _Request_Version.responseSerializer = [AFHTTPResponseSerializer serializer];
+#endif
+        _Request_Version.requestSerializer.timeoutInterval = TIME_REQUEST_OUT;
+    }
+    return _Request_Version;
+}
+
+
+
+@end

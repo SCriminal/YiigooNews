@@ -1,0 +1,29 @@
+//
+//  GlobalModelExchange.m
+//  米兰港
+//
+//  Created by 隋林栋 on 15/7/24.
+//  Copyright (c) 2015年 Sl. All rights reserved.
+//
+
+#import "GlobalModelExchange.h"
+
+@implementation GlobalModelExchange
+
+#pragma mark 退款详情到退款列表
++ (void)exchangeModelFromRefundDetail:(ModelRefundDetail_BaseClass *)modelDetail
+                         toRefundList:(ModelRefundList_Items *)modelItem{
+    modelItem.status = modelDetail.status;
+    modelItem.createTimeString = modelDetail.createTimeString;
+    modelItem.orderType = modelDetail.orderType;
+    modelItem.orderID = modelDetail.orderID;
+    modelItem.refundAcceptanceStatusDesc = modelDetail.refundAcceptanceStatusDesc;
+    modelItem.refundMoney = modelDetail.refundMoney;
+    modelItem.orderTypeDesc = modelDetail.orderTypeDesc;
+    modelItem.buyCompanyName = modelDetail.buyCompanyName;
+    modelItem.totalPrice = modelDetail.totalPrice;
+    modelItem.iDProperty = modelDetail.iDProperty;
+    modelItem.createTime = modelDetail.createTime;
+}
+
+@end

@@ -1,0 +1,56 @@
+//
+//  RequestBaseClass.h
+//  XXT
+//
+//  Created by xiu on 14-3-18.
+//  Copyright (c) 2014年 Sld. All rights reserved.
+//
+
+#import "AFHTTPRequestOperationManager.h"
+@class  NSDictionary;
+
+
+// 协议 用来做progress
+
+@protocol RequestBaseClassDelegate <NSObject>
+
+- (void)protocolHideProgressMehtod:(NSString *)method success:(NSString *)message viewShow:(UIView *)viewShow  show:(BOOL)show;
+- (void)protocolHideProgressMehtod:(NSString *)method error:(id)error viewShow:(UIView *)viewShow show:(BOOL)show;
+- (void)protocolShowProgressMethod:(NSString *)method viewShow:(UIView *)viewShow;
+@end
+
+@interface RequestBaseClass : AFHTTPRequestOperationManager
+
+
+@property (nonatomic, weak) id <RequestBaseClassDelegate> delegate;
+@property (nonatomic, strong) UIViewController * vcUser;
+
+#pragma mark 网络请求
+// responseObject 返回数据为data中的内容
+- (void)postUrl:(NSString *)URL
+         method:(NSString *)method
+     parameters:(NSDictionary *)parameters
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, id error))failure;
+// responseObject 返回数据含有status data message
+- (void)postUrl:(NSString *)URL
+         method:(NSString *)method
+     parameters:(NSDictionary *)parameters
+      returnALL:(BOOL)returnAll
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, id error))failure;
+//上传图片
+- (void)postUrl:(NSString *)URL
+         method:(NSString *)method
+     parameters:(NSDictionary *)parameters
+      returnALL:(BOOL)returnAll
+constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, id error))failure;
+
+//#pragma mark 拼接基础头字符串
+//- (NSMutableDictionary *)setInitHead:(NSDictionary *)dicParameters  method:(NSString *)method;
+
+@end
+
+
